@@ -25,7 +25,7 @@ dag = DAG(
 
 t1 = BashOperator(
     task_id='envioSlack',
-    bash_command="curl -X POST --data-urlencode payload=\"{'channel': '#pantulis-airflow', 'username': 'webhookbot', 'text': 'Airflow te saluda desde Kubernetes', 'icon_emoji': ':ghost:'}\" " + hook,
+    bash_command="curl -X POST --data-urlencode payload=\"{'channel': '#ie-dev', 'username': 'webhookbot', 'text': 'Airflow te saluda desde Kubernetes', 'icon_emoji': ':ghost:'}\" " + hook,
     dag=dag
 )
 
