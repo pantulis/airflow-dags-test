@@ -17,15 +17,15 @@ args = {
 }
 
 dag = DAG(
-    dag_id='slack',
+    dag_id='slack_test_with_custom_docker_image',
     default_args=args,
     schedule_interval='0 0 * * *',
     dagrun_timeout=timedelta(minutes=60),
 )
 
 t1 = BashOperator(
-    task_id='envioSlack',
-    bash_command="curl -X POST --data-urlencode payload=\"{'channel': '#ie-dev', 'username': 'webhookbot', 'text': 'Airflow te saluda desde Kubernetes', 'icon_emoji': ':ghost:'}\" " + hook,
+    task_id='envioSlackInDocker',
+    bash_command="curl -X POST --data-urlencode payload=\"{'channel': '#ie-dev', 'username': 'webhookbot', 'text': 'Airflow te saluda desde Kubernetes con un contenedor custom', 'icon_emoji': ':ghost:'}\" " + hook,
     dag=dag,
     executor_config={
        "KubernetesExecutor": {"image":"dag_1:latest"}}
